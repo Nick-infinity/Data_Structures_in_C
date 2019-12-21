@@ -7,7 +7,7 @@ struct Node
     struct Node *next;
 };
 
-// Traversing and printing the list
+// TRAVERSING & PRINTING THE LIST
 void traverse(struct Node *head)
 {
     struct Node *temp = head;
@@ -18,10 +18,22 @@ void traverse(struct Node *head)
     }
 }
 
+// FINDING LENGTH OF THE LIST
+void ListLength(struct Node* head)
+{
+    struct  Node *temp = head;
+    int count = 0;
+    while(temp != NULL){
+        count++;
+        temp = temp->next;
+    }
+    printf("\nList have %d elements.",count);
+}
+
 int main()
 {
     // malloc is lenghty as compared to new in cpp
-    struct Node *head = (struct Node*)malloc(sizeof(struct Node)); 
+    struct Node *head = (struct Node*)malloc(sizeof(struct Node));
     struct Node *second = (struct Node*)malloc(sizeof(struct Node));
     struct Node *third = (struct Node*)malloc(sizeof(struct Node));
 
@@ -32,5 +44,6 @@ int main()
     third->data=3;
     third->next=NULL;
     traverse(head);
+    ListLength(head);
     return 0;
 }
