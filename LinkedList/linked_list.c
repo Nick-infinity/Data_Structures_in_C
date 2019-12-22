@@ -19,6 +19,7 @@ void createList(int n);
 void display();
 void insertNodeatbeg(int data);
 void insertNodeatEnd(int data);
+void insertAtPosition(int data , int postion);
 
 int main()
 {
@@ -29,7 +30,9 @@ int main()
     printf("\nAdding node at beginning!");
     insertNodeatbeg(0);   
     printf("\nAdding node at ending");
-    insertNodeatEnd(4);                   
+    insertNodeatEnd(4);
+    printf("\nAdding node at postion"); 
+    insertAtPosition(9,3);              
     printf("\nEntire linked list data: ");
     display();
 
@@ -104,7 +107,7 @@ void insertNodeatbeg(int data)
     }
     newNode->data = data;
     newNode->next = head;  // setting link of new head node
-    head = newNode;        // setting new node as head nodeS
+    head = newNode;        // setting new node as head node
     printf("\nNODE ADDED AT BEGGINING SUCCESSFULLY");
 }
 
@@ -117,7 +120,8 @@ void insertNodeatEnd(int data)
 
     if(newNode == NULL)
     {
-        printf("Unable to allocate memory.");
+        printf("Unable to allocate memory to end node.");
+        exit(0);
     }
     else
     {
@@ -133,5 +137,40 @@ void insertNodeatEnd(int data)
         temp->next = newNode; // Link address part
 
         printf("\nDATA INSERTED AT END SUCCESSFULLY");
+    }
+}
+
+// inserting node at given postion
+void insertAtPosition(int data, int postion)
+{
+    struct node *newNode, *temp;
+    int count  =1;
+    temp =head; //setting temp as head reference for traversing
+    newNode = (struct node*)malloc(sizeof(struct node));
+    if(newNode == NULL)
+    {
+        printf("Unable to allocate memory to middle node");
+        exit(0);
+    }
+    else
+    {
+        newNode->data =data; //setting data of new node
+        while(temp != NULL)
+        {
+
+            temp = temp->next;
+            count++;
+            if(count == postion-1){
+                break;
+            }
+            else
+            {
+                printf("\nPosition %d is  not found in the list!");
+                return;
+            }
+        }
+        newNode->next=temp->next;
+        temp->next = newNode;
+        printf("\nNODE ADDED AT %d POSITION SUCCESSFULLY",postion);
     }
 }
