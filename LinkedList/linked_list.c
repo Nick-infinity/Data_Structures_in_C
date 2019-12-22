@@ -111,15 +111,27 @@ void insertNodeatbeg(int data)
 // inserting node at end
 void insertNodeatEnd(int data)
 {
-    struct node *temp;
-    temp = head;
-    struct node *endNode = (struct node*)malloc(sizeof(struct node));
-    endNode->data = data;
-    while(temp->next != NULL)
+    struct node *newNode, *temp;
+
+    newNode = (struct node*)malloc(sizeof(struct node));
+
+    if(newNode == NULL)
     {
-        temp = temp->next;
+        printf("Unable to allocate memory.");
     }
-    temp->next = endNode;     // setting link of last node to new end node
-    endNode->next = NULL;     // setting link of new end node to NULL
-    printf("\nNODE ADDED AT END SUCCESSFULLY");
+    else
+    {
+        newNode->data = data; // Link the data part
+        newNode->next = NULL; 
+
+        temp = head;
+
+        // Traverse to the last node
+        while(temp->next != NULL)
+            temp = temp->next;
+
+        temp->next = newNode; // Link address part
+
+        printf("\nDATA INSERTED AT END SUCCESSFULLY");
+    }
 }
