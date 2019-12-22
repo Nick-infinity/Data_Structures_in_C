@@ -17,6 +17,7 @@ struct node
 */
 void createList(int n); 
 void display();
+void insertNodeatbeg(int data);
 
 int main()
 {
@@ -24,8 +25,11 @@ int main()
     printf("Enter the number of nodes to create: ");
     scanf("%d",&n);
     createList(n);
+    printf("\nAdding node at beginning!");
+    insertNodeatbeg(0);                      // user defined input can be added too
     printf("\nEntire linked list data: ");
     display();
+
 }
 
 // Creating a linked list
@@ -66,6 +70,7 @@ void createList(int n)
         tmp = tmp->next;         // update tmp & set to new node
 
     }
+    printf("LIST CREATED SUCCESSFULLY");
     
 }
 
@@ -84,4 +89,18 @@ void display()
         tmp = tmp->next; // move to next  node
     }
 
+}
+
+// inserting node at beginning of the list
+void insertNodeatbeg(int data)
+{
+	struct node *newNode = (struct node*)malloc(sizeof(struct node));
+	if(newNode == NULL){
+		printf("\nUnable to allocate memory to beginning node!");
+		exit(0);
+	}
+	newNode->data = data;
+	newNode->next = head;  // setting link of new head node;
+	head = newNode;        // setting new node as head node;
+	printf("\nNODE ADDED AT BEGGINING SUCcESSFULLY");
 }
