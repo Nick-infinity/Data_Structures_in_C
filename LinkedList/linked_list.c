@@ -18,6 +18,7 @@ struct node
 void createList(int n); 
 void display();
 void insertNodeatbeg(int data);
+void insertNodeatEnd(int data);
 
 int main()
 {
@@ -26,7 +27,9 @@ int main()
     scanf("%d",&n);
     createList(n);
     printf("\nAdding node at beginning!");
-    insertNodeatbeg(0);                      // user defined input can be added too
+    insertNodeatbeg(0);   
+    printf("\nAdding node at ending");
+    insertNodeatEnd(4);                   
     printf("\nEntire linked list data: ");
     display();
 
@@ -94,13 +97,29 @@ void display()
 // inserting node at beginning of the list
 void insertNodeatbeg(int data)
 {
-	struct node *newNode = (struct node*)malloc(sizeof(struct node));
-	if(newNode == NULL){
-		printf("\nUnable to allocate memory to beginning node!");
-		exit(0);
-	}
-	newNode->data = data;
-	newNode->next = head;  // setting link of new head node;
-	head = newNode;        // setting new node as head node;
-	printf("\nNODE ADDED AT BEGGINING SUCcESSFULLY");
+    struct node *newNode = (struct node*)malloc(sizeof(struct node));
+    if(newNode == NULL){
+        printf("\nUnable to allocate memory to beginning node!");
+        exit(0);
+    }
+    newNode->data = data;
+    newNode->next = head;  // setting link of new head node
+    head = newNode;        // setting new node as head nodeS
+    printf("\nNODE ADDED AT BEGGINING SUCCESSFULLY");
+}
+
+// inserting node at end
+void insertNodeatEnd(int data)
+{
+    struct node *temp;
+    temp = head;
+    struct node *endNode = (struct node*)malloc(sizeof(struct node));
+    endNode->data = data;
+    while(temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    temp->next = endNode;     // setting link of last node to new end node
+    endNode->next = NULL;     // setting link of new end node to NULL
+    printf("\nNODE ADDED AT END SUCCESSFULLY");
 }
