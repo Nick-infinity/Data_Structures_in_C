@@ -20,6 +20,7 @@ void display();
 void insertNodeatbeg(int data);
 void insertNodeatEnd(int data);
 void insertAtPosition(int data , int postion);
+void deleteAtBeg();
 
 int main()
 {
@@ -33,6 +34,8 @@ int main()
     insertNodeatEnd(4);
     printf("\nAdding node at postion"); 
     insertAtPosition(9,3);              
+    printf("\nDeleting the first node.");
+    deleteAtBeg();
     printf("\nEntire linked list data: ");
     display();
 
@@ -159,8 +162,8 @@ void insertAtPosition(int data, int postion)
         {
 
             temp = temp->next;
-            count++;
-            if(count == postion-1){
+            count++;                 // counting the posiitons
+            if(count == postion-1){   // exiitng the loop  1 position before
                 break;
             }
             else
@@ -169,8 +172,25 @@ void insertAtPosition(int data, int postion)
                 return;
             }
         }
-        newNode->next=temp->next;
-        temp->next = newNode;
+        newNode->next=temp->next;  // ponting new node to next node of current node
+        temp->next = newNode;      // updating the previous node to point to newly added node
         printf("\nNODE ADDED AT %d POSITION SUCCESSFULLY",postion);
+    }
+}
+
+// deleting very first node
+void deleteAtBeg()
+{
+    if(head == NULL)
+    {
+        printf("\nList is empty!");
+        exit(0);
+    }
+    else
+    {
+        struct node *todelete = head; // storing the head in temporary node
+        head = head->next;            // updating head to next node
+        free(todelete);               // free the temporary node from memory
+        printf("\nSUCCESSFULLY DELTED FIRST NODE FOR THE LIST WITH DATA");
     }
 }
