@@ -23,10 +23,12 @@ void insertAtPosition(int data , int postion);
 void deleteAtBeg();
 void deleteAtEnd();
 void deleteAtPosition(int position);
+void deleteAll();
 
 int main()
 {
     int n;
+    char consent;
     printf("Enter the number of nodes to create: ");
     scanf("%d", &n);
     createList(n);
@@ -60,6 +62,15 @@ int main()
 
     printf("\nDeleting a node at position");
     deleteAtPosition(3);
+    printf("\nEntire linked list data: ");
+    display();
+
+    printf("\nWARNING- Deleting all nodes! \nProceed? [y/n]");
+    scanf("%s", &consent);
+    if (consent == 'y' || consent == 'Y')
+    {
+        deleteAll();
+    }
     printf("\nEntire linked list data: ");
     display();
 
@@ -269,4 +280,17 @@ void deleteAtPosition(int position)
     }
     printf("\nUnable to find the %d position in the list!", position);
 
+}
+
+// deleting complete list
+void deleteAll()
+{
+    struct node *temp = head;
+    while (head != NULL)
+    {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+    printf("\nDELETED LIST SUCCESSFULLY");
 }
