@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "stack.h"
 int showTop()
 {
-	if(top<0)
+	if (top < 0)
 	{
 		printf("\nStack is empty!");
-		return-1;
+		return INT_MIN;
 	}
 	else
 	{

@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "stack.h"
 int top = -1; // decalration always in c files
 
@@ -39,7 +40,7 @@ int main()
 			data = pop();
 
 			// If stack is not empty
-			if (data != -1) // controlling the output via -1 return
+			if (data != INT_MIN) // controlling the output via -1 return
 				printf("Data => %d\n", data);
 			break;
 
@@ -53,7 +54,7 @@ int main()
 
 		case 4:
 			topElement = showTop();
-			if (topElement != -1)
+			if (topElement != INT_MIN)
 				printf("\nTop element: %d", topElement);
 			break;
 

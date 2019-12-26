@@ -3,13 +3,13 @@
 #include "stack.h"
 int size()
 {
-	if(top<0)
+	if (top < 0)
 	{
 		printf("\nStack is empty!");
 		exit(0);
 	}
 	else
 	{
-		return top+1;
+		return top + 1;
 	}
 }
